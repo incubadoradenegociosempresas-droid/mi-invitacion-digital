@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>XV WOW Comercial 3D Más Variada</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Imperial+Script&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --outside:#d9c8cf;
+  --bg1:#fff8fb;
+  --bg2:#fffefe;
+  --ink:#2d2326;
+  --soft:#77646a;
+  --accent:#d58aa8;
+  --accent2:#b46a88;
+  --gold:#d9b874;
+  --dark:#5f3f51;
+  --line:rgba(213,138,168,.45);
+  --panel:rgba(255,252,247,.95);
+  --panelLine:rgba(213,138,168,.28);
+  --shadow:0 28px 60px rgba(40,25,30,.18);
+  --softShadow:0 18px 34px rgba(40,25,30,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,var(--outside),#cbbbc2);font-family:'Cormorant Garamond',serif;color:var(--ink);overflow-x:hidden}
+.page{position:relative;width:100%;max-width:480px;min-height:100svh;margin:0 auto;overflow:hidden;background:
+ radial-gradient(circle at 50% -10%, rgba(255,255,255,.95), transparent 24%),
+ radial-gradient(circle at 12% 18%, var(--wash1), transparent 22%),
+ radial-gradient(circle at 88% 32%, var(--wash2), transparent 28%),
+ linear-gradient(180deg,var(--bg2),var(--bg1));box-shadow:0 0 60px rgba(0,0,0,.25);perspective:1600px}
+.grain,.sparkles,.sheen,.petals{position:absolute;inset:0;pointer-events:none}
+.grain{opacity:.24;z-index:0;background-image:linear-gradient(45deg, rgba(0,0,0,.02) 25%, transparent 25%),linear-gradient(-45deg, rgba(0,0,0,.015) 25%, transparent 25%);background-size:18px 18px,22px 22px}
+.sparkles{z-index:0;opacity:.62;background-image:
+ radial-gradient(circle at 14% 11%, rgba(255,255,255,.8) 0 1px, transparent 2px),
+ radial-gradient(circle at 76% 12%, rgba(255,255,255,.65) 0 1px, transparent 2px),
+ radial-gradient(circle at 42% 20%, rgba(255,228,180,.78) 0 1.5px, transparent 3px),
+ radial-gradient(circle at 55% 37%, rgba(255,255,255,.6) 0 1px, transparent 2px),
+ radial-gradient(circle at 26% 70%, rgba(255,255,255,.6) 0 1px, transparent 2px),
+ radial-gradient(circle at 82% 80%, rgba(255,255,255,.55) 0 1px, transparent 2px);animation:twinkle 4.5s ease-in-out infinite alternate}
+.sheen{z-index:1;background:linear-gradient(115deg, transparent 0 38%, rgba(255,255,255,.18) 44%, transparent 50%);transform:translateX(-80%);animation:sheen 11s linear infinite}
+.petal{position:absolute;width:13px;height:21px;border-radius:70% 50% 70% 50%;background:linear-gradient(135deg, rgba(255,255,255,.95), var(--petal));box-shadow:0 6px 14px rgba(0,0,0,.05);opacity:.6;animation:fall linear infinite}
+.music{position:fixed;right:16px;top:16px;z-index:80;width:80px;height:80px;border-radius:50%;border:1px solid rgba(255,255,255,.56);background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff;box-shadow:0 16px 34px rgba(0,0,0,.24);font:800 12px 'Montserrat',sans-serif;letter-spacing:1px;cursor:pointer;animation:musicPulse 3s ease-in-out infinite}
+.sticky{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);width:min(430px,calc(100% - 22px));z-index:75;background:rgba(255,255,255,.86);border:1px solid rgba(255,255,255,.72);backdrop-filter:blur(14px);border-radius:24px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 18px 34px rgba(0,0,0,.16)}
+.sticky span{font:700 13px 'Montserrat',sans-serif;color:#5a4750}
+section{position:relative;z-index:2;padding:58px 22px;text-align:center}
+section:not(.hero)::before{content:'';position:absolute;left:18px;right:18px;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+.hero{padding-top:92px;padding-bottom:46px;min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+.label{display:inline-block;margin:0 auto 16px;padding:9px 18px;border-radius:999px;background:linear-gradient(135deg,rgba(255,255,255,.86), rgba(255,219,232,.52));color:var(--accent2);box-shadow:var(--softShadow);font:800 11px 'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:2.4px;animation:float 5s ease-in-out infinite}
+.names{font-family:'Great Vibes',cursive;font-size:72px;line-height:.88;margin:8px 0 6px;text-shadow:0 2px 0 rgba(255,255,255,.82)}
+.title{margin:0;font:600 30px 'Cinzel',serif;letter-spacing:4px;text-transform:uppercase}
+.quote{max-width:340px;margin:16px auto 0;font-size:23px;line-height:1.28;color:var(--soft);font-style:italic}
+
+/* opening envelope hero */
+.envelope-scene{position:relative;min-height:560px;margin:0 auto 8px;perspective:1500px;transform-style:preserve-3d;animation:sceneBreath 9s ease-in-out infinite}
+.envelope-wrap{position:absolute;left:50%;top:55%;width:330px;height:230px;transform:translate(-50%,-50%) rotateX(6deg) rotateY(-8deg) translateZ(20px);transform-style:preserve-3d;filter:drop-shadow(0 28px 32px rgba(0,0,0,.22));}
+.env-back{position:absolute;left:0;right:0;bottom:0;height:172px;border-radius:12px 12px 24px 24px;background:linear-gradient(135deg,var(--accent),var(--accent2));}
+.env-liner{position:absolute;left:25px;right:25px;top:0;height:170px;background:linear-gradient(135deg,#fff,var(--bg1));clip-path:polygon(50% 0,100% 100%,0 100%);transform-origin:50% 100%;animation:flapOpen 4.8s ease-in-out infinite;z-index:4}
+.env-front{position:absolute;left:0;right:0;bottom:0;height:125px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(0,0,0,.20));clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);border-radius:0 0 24px 24px;z-index:8}
+.env-card{position:absolute;left:50%;bottom:78px;width:210px;height:270px;transform:translateX(-50%) translateZ(70px) rotateZ(-3deg);background:#fff;border:9px solid #fff;border-bottom-width:18px;background-size:cover;background-position:center;box-shadow:var(--shadow);animation:cardRise 4.8s ease-in-out infinite;z-index:6}
+.seal{position:absolute;left:50%;bottom:94px;transform:translateX(-50%) translateZ(100px);width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff1cf,var(--gold) 42%,var(--accent2));box-shadow:0 12px 20px rgba(0,0,0,.22);z-index:10;animation:sealPulse 3s ease-in-out infinite}
+.floating-frame{position:absolute;background:#fff;border:9px solid #fff;border-bottom-width:18px;background-size:cover;background-position:center;box-shadow:var(--shadow);transform-style:preserve-3d}
+.frame-a{left:8px;top:56px;width:160px;height:220px;background-image:url('assets/foto03.jpg');transform:rotateY(18deg) rotateZ(-10deg) translateZ(70px);animation:floatA 7s ease-in-out infinite}
+.frame-b{right:4px;top:38px;width:150px;height:200px;background-image:url('assets/foto04.jpg');transform:rotateY(-18deg) rotateZ(9deg) translateZ(100px);animation:floatB 7.5s ease-in-out infinite}
+.frame-c{left:22px;bottom:28px;width:156px;height:198px;background-image:url('assets/foto05.jpg');transform:rotateY(10deg) rotateZ(8deg) translateZ(55px);animation:floatC 6.8s ease-in-out infinite}
+.frame-d{right:26px;bottom:20px;width:176px;height:220px;background-image:url('assets/foto08.jpg');transform:rotateY(-12deg) rotateZ(-6deg) translateZ(45px);animation:floatD 8s ease-in-out infinite}
+.crown{position:absolute;left:50%;top:18px;transform:translateX(-50%) translateZ(180px);font-size:45px;filter:drop-shadow(0 8px 12px rgba(0,0,0,.18));animation:float 4.8s ease-in-out infinite;z-index:12}
+.medallion{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%) translateZ(160px);width:170px;height:170px;border-radius:50%;background:radial-gradient(circle at 35% 30%, #fff0f6, var(--accent) 38%, var(--accent2) 100%);box-shadow:0 24px 42px rgba(0,0,0,.26);display:grid;place-items:center;color:#fff;z-index:12;animation:medallion 3.8s ease-in-out infinite}
+.medallion::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px dashed rgba(255,255,255,.55);animation:spin 18s linear infinite}
+.medallion .day{font-family:'Imperial Script',cursive;font-size:82px;line-height:.62}.medallion .month{font:700 14px 'Montserrat',sans-serif;letter-spacing:1.7px;text-transform:uppercase}.medallion .year{font:500 14px 'Montserrat',sans-serif}
+
+/* panels + moved frames */
+.panel,.detail{position:relative;background:var(--panel);border:1px solid var(--panelLine);box-shadow:var(--shadow);overflow:hidden}
+.panel{padding:32px 20px;border-radius:30px}.panel::before,.detail::before{content:'';position:absolute;inset:11px;border:1px solid rgba(255,255,255,.30);pointer-events:none}.panel::after,.detail::after{content:'';position:absolute;top:0;bottom:0;left:-130px;width:90px;transform:skewX(-18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.58),transparent);animation:glint 5.2s infinite}
+h2{margin:0 0 14px;font-family:'Great Vibes',cursive;font-size:56px;line-height:1}.copy{margin:0;font-size:22px;color:var(--soft);line-height:1.4}
+.btn{display:inline-block;margin-top:18px;padding:14px 24px;border-radius:999px;border:1px solid rgba(47,37,27,.34);background:#fff;color:var(--ink);text-decoration:none;font:700 14px 'Montserrat',sans-serif;letter-spacing:.4px;box-shadow:0 10px 18px rgba(0,0,0,.08);transition:all .35s ease}.btn:hover{transform:translateY(-3px) scale(1.03);background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff;box-shadow:0 16px 26px rgba(0,0,0,.18)}.btn.fill{background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff;border-color:var(--gold)}.btn.dark{background:var(--dark);border-color:var(--dark);color:#fff}.btn.wide{width:100%}
+
+.editorial-collage{margin:28px 0 4px;height:390px;position:relative;transform-style:preserve-3d}
+.ed-img{position:absolute;border:10px solid #fff;border-radius:20px;background-size:cover;background-position:center;box-shadow:var(--shadow)}
+.ed-a{left:-5px;top:50px;width:62%;height:285px;background-image:url('assets/foto02.jpg');transform:rotateY(15deg) rotateZ(-6deg) translateZ(48px);animation:float 6.2s ease-in-out infinite}
+.ed-b{right:-4px;top:0;width:58%;height:260px;background-image:url('assets/foto06.jpg');transform:rotateY(-13deg) rotateZ(6deg) translateZ(36px);animation:floatAlt 7s ease-in-out infinite}
+.ed-c{left:50%;bottom:0;width:48%;height:190px;background-image:url('assets/foto09.jpg');transform:translateX(-50%) rotateZ(3deg) translateZ(95px);animation:photoLift 5.8s ease-in-out infinite}
+.mini-seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) translateZ(130px);width:78px;height:78px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #fff0f6, var(--accent) 40%, var(--accent2) 100%);box-shadow:0 16px 26px rgba(0,0,0,.25);z-index:5;animation:sealPulse 3s ease-in-out infinite}
+
+.details{display:grid;gap:18px;margin-top:20px}.detail{padding:28px 18px;border-radius:28px;box-shadow:var(--softShadow);animation:cardBreath 5.5s ease-in-out infinite}.detail:nth-child(2){animation-delay:.35s}.icon{width:68px;height:68px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:28px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 14px 24px rgba(0,0,0,.16);animation:iconFloat 3.5s ease-in-out infinite}.tag{font:800 11px 'Montserrat',sans-serif;letter-spacing:2.4px;text-transform:uppercase;color:var(--accent2)}.detail p{font-size:22px;line-height:1.25;color:var(--soft);margin:8px 0 0}.detail strong{color:var(--ink)}
+
+.gallery-stage{margin-top:22px;position:relative;height:440px;perspective:1200px;overflow:visible}.gallery-ring{position:absolute;left:50%;top:50%;width:220px;height:285px;transform-style:preserve-3d;transform:translate(-50%,-50%) rotateX(-7deg);animation:ring 30s linear infinite}.ring-card{position:absolute;inset:0;border:10px solid #fff;border-radius:22px;background-size:cover;background-position:center;box-shadow:var(--shadow)}.ring-card::before,.ring-card::after{content:'';position:absolute;top:-12px;width:48px;height:15px;background:rgba(255,255,255,.62);border:1px solid rgba(180,180,180,.14)}.ring-card::before{left:18px;transform:rotate(-10deg)}.ring-card::after{right:18px;transform:rotate(9deg)}.ring-card span{position:absolute;left:12px;bottom:12px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.9);color:#8a5b70;font:800 10px 'Montserrat',sans-serif;letter-spacing:1.4px;text-transform:uppercase}
+.timeline{margin-top:12px;text-align:left;position:relative}.timeline::before{content:'';position:absolute;left:38px;top:20px;bottom:20px;width:2px;background:linear-gradient(var(--accent), rgba(0,0,0,.12))}.row{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid rgba(0,0,0,.065);position:relative;font-size:21px}.row:last-child{border-bottom:0}.row::before{content:'';position:absolute;left:32px;top:23px;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px rgba(255,255,255,.96)}.time{min-width:88px;padding-left:24px;color:var(--accent2);font-weight:700}
+.palette{display:flex;justify-content:center;gap:10px;margin-top:16px}.palette span{width:22px;height:22px;border-radius:50%;box-shadow:0 4px 10px rgba(0,0,0,.08);animation:pop 2.2s ease-in-out infinite}
+.count-lace{width:250px;height:250px;border-radius:50%;margin:0 auto 16px;padding:26px;background:repeating-radial-gradient(circle,#fff 0 5px,transparent 6px 13px);filter:drop-shadow(0 16px 22px rgba(0,0,0,.16));animation:float 5.4s ease-in-out infinite}.count-core{width:100%;height:100%;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff;box-shadow:inset 0 0 30px rgba(255,255,255,.13)}.count-core h3{font-family:'Great Vibes',cursive;font-size:52px;margin:0;line-height:.9}.nums{font:800 28px 'Montserrat',sans-serif;letter-spacing:1px}.nums small{display:block;margin-top:4px;font:600 10px 'Montserrat',sans-serif;letter-spacing:2px;text-transform:uppercase}
+input,textarea{width:100%;padding:14px;border-radius:14px;border:1px solid var(--panelLine);margin-bottom:10px;background:#fffaf4;color:var(--ink);font:500 15px 'Montserrat',sans-serif;transition:all .3s ease} input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(213,138,168,.14);transform:translateY(-2px)}
+.footer{position:relative;z-index:2;padding:30px 22px 112px;text-align:center;color:#7f7264;font:500 14px 'Montserrat',sans-serif}.footer strong{color:#5f4e37}
+.reveal{opacity:0;transform:translateY(34px) scale(.98);transition:opacity .85s ease,transform .85s ease}.reveal.visible{opacity:1;transform:translateY(0) scale(1)}
+
+@keyframes twinkle{0%{opacity:.28}100%{opacity:.74}} @keyframes sheen{0%{transform:translateX(-85%)}100%{transform:translateX(140%)}} @keyframes musicPulse{0%,100%{box-shadow:0 16px 34px rgba(0,0,0,.24)}50%{box-shadow:0 16px 34px rgba(0,0,0,.28),0 0 0 8px rgba(255,255,255,.14)}} @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}} @keyframes floatAlt{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}} @keyframes sceneBreath{0%,100%{transform:rotateY(0deg) rotateX(0)}50%{transform:rotateY(-5deg) rotateX(2deg)}} @keyframes flapOpen{0%,100%{transform:rotateX(0deg)}50%{transform:rotateX(-58deg) translateY(-8px)}} @keyframes cardRise{0%,100%{transform:translateX(-50%) translateY(8px) translateZ(70px) rotateZ(-3deg)}50%{transform:translateX(-50%) translateY(-44px) translateZ(105px) rotateZ(2deg)}} @keyframes sealPulse{0%,100%{transform:translateX(-50%) translateZ(100px) scale(1)}50%{transform:translateX(-50%) translateZ(100px) scale(1.08)}} @keyframes floatA{0%,100%{transform:rotateY(18deg) rotateZ(-10deg) translate3d(0,0,70px)}50%{transform:rotateY(18deg) rotateZ(-7deg) translate3d(0,-12px,92px)}} @keyframes floatB{0%,100%{transform:rotateY(-18deg) rotateZ(9deg) translate3d(0,0,100px)}50%{transform:rotateY(-18deg) rotateZ(6deg) translate3d(0,10px,122px)}} @keyframes floatC{0%,100%{transform:rotateY(10deg) rotateZ(8deg) translate3d(0,0,55px)}50%{transform:rotateY(10deg) rotateZ(5deg) translate3d(0,-10px,78px)}} @keyframes floatD{0%,100%{transform:rotateY(-12deg) rotateZ(-6deg) translate3d(0,0,45px)}50%{transform:rotateY(-12deg) rotateZ(-3deg) translate3d(0,12px,65px)}} @keyframes medallion{0%,100%{box-shadow:0 24px 42px rgba(0,0,0,.26)}50%{box-shadow:0 28px 46px rgba(0,0,0,.30),0 0 0 13px rgba(255,255,255,.12)}} @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}} @keyframes glint{0%{left:-130px}45%,100%{left:125%}} @keyframes photoLift{0%,100%{transform:translateX(-50%) rotateZ(3deg) translateZ(95px)}50%{transform:translateX(-50%) rotateZ(0deg) translateZ(118px) translateY(-8px)}} @keyframes cardBreath{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}} @keyframes iconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}} @keyframes ring{from{transform:translate(-50%,-50%) rotateX(-7deg) rotateY(0)}to{transform:translate(-50%,-50%) rotateX(-7deg) rotateY(360deg)}} @keyframes pop{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}} @keyframes fall{0%{transform:translateY(-30px) rotate(0);opacity:0}12%{opacity:.58}100%{transform:translateY(1150px) translateX(40px) rotate(340deg);opacity:0}}
+@media(max-width:380px){section{padding-left:18px;padding-right:18px}.names{font-size:60px}.envelope-scene{min-height:520px}.envelope-wrap{width:304px}.floating-frame{transform:scale(.92)}.medallion{width:160px;height:160px}.gallery-stage{height:404px}.gallery-ring,.ring-card{width:202px;height:262px}.sticky span{font-size:12px}.count-lace{width:224px;height:224px}}
+</style>
+
+
+<style>
+:root{
+--outside:#dcc7d0;
+--bg1:#fff6fa;
+--bg2:#fffefe;
+--wash1:rgba(255,181,213,.32);
+--wash2:rgba(255,220,150,.28);
+--ink:#2f2229;
+--soft:#7a5f6a;
+--accent:#e66fa8;
+--accent2:#9b4370;
+--gold:#e0b94c;
+--dark:#402337;
+--line:rgba(230,111,168,.45);
+--panel:rgba(255,252,248,.96);
+--panelLine:rgba(230,111,168,.26);
+--petal:rgba(255,190,220,.78);
+}
+.env-card{background-image:url('assets/foto02.jpg')}
+.frame-a{background-image:url('assets/foto01.jpg')}
+.frame-b{background-image:url('assets/foto04.jpg')}
+.frame-c{background-image:url('assets/foto06.jpg')}
+.frame-d{background-image:url('assets/foto09.jpg')}
+</style>
+
+</head>
+<body data-date="2026-09-20T18:00:00" data-name="Camila">
+<main class="page">
+<div class="grain"></div><div class="sparkles"></div><div class="petals" id="petals"></div><div class="sheen"></div>
+<button class="music" onclick="toggleMusic()">DALE<br>PLAY</button>
+<div class="sticky"><span>Versión WOW con sobre abriéndose</span><a class="btn fill" href="https://wa.me/524772732496?text=Hola%2C%20quiero%20una%20invitaci%C3%B3n%20XV%20WOW%20con%20sobres%203D" target="_blank">Cotizar</a></div>
+
+<section class="hero reveal visible">
+  <div class="label">XV Años · WOW 3D Comercial</div>
+  <div class="envelope-scene">
+    <div class="crown">👑</div>
+    <div class="floating-frame frame-a"></div>
+    <div class="floating-frame frame-b"></div>
+    <div class="floating-frame frame-c"></div>
+    <div class="floating-frame frame-d"></div>
+    <div class="envelope-wrap">
+      <div class="env-back"></div>
+      <div class="env-liner"></div>
+      <div class="env-card"></div>
+      <div class="env-front"></div>
+      <div class="seal"></div>
+    </div>
+    <div class="medallion"><div><div class="day">15</div><div class="month">Septiembre</div><div class="year">2026</div></div></div>
+  </div>
+  <div class="names">Camila</div>
+  <p class="title">Mis XV Años</p>
+  <p class="quote">Te invito a una noche espectacular, llena de brillo, magia, música y recuerdos inolvidables.</p>
+</section>
+
+<section class="reveal">
+  <div class="panel">
+    <h2>Impacto desde el primer segundo</h2>
+    <p class="copy">Diseñada para destacar frente a otros proveedores: más movimiento, más profundidad, fotos ladeadas y una portada mucho más visual.</p>
+  </div>
+  <div class="editorial-collage">
+    <div class="ed-img ed-a"></div>
+    <div class="ed-img ed-b"></div>
+    <div class="ed-img ed-c"></div>
+    <div class="mini-seal"></div>
+  </div>
+</section>
+
+<section class="reveal">
+  <h2>Ceremonia & Fiesta</h2>
+  <div class="details">
+    <div class="detail"><div class="icon">⛪</div><div class="tag">Misa</div><p><strong>6:00 PM</strong><br>Parroquia San José</p><a class="btn" href="https://maps.google.com" target="_blank">Ver ubicación</a></div>
+    <div class="detail"><div class="icon" style="background:linear-gradient(135deg,var(--gold),var(--accent2))">✨</div><div class="tag">Recepción</div><p><strong>8:00 PM</strong><br>Jardín de Cristal</p><a class="btn dark" href="https://maps.google.com" target="_blank">Ver ubicación</a></div>
+  </div>
+</section>
+
+<section class="reveal">
+  <h2>Galería 3D</h2>
+  <p class="copy" style="max-width:335px;margin:0 auto">Fotos en movimiento, marcos ladeados y una experiencia visual más variada para que no se sienta plana.</p>
+  <div class="gallery-stage"><div class="gallery-ring"><div class="ring-card" style="background-image:url('assets/foto01.jpg');transform:rotateY(0deg) translateZ(275px)"><span>WOW</span></div>
+<div class="ring-card" style="background-image:url('assets/foto02.jpg');transform:rotateY(40deg) translateZ(275px)"><span>Glam</span></div>
+<div class="ring-card" style="background-image:url('assets/foto03.jpg');transform:rotateY(80deg) translateZ(275px)"><span>Brillo</span></div>
+<div class="ring-card" style="background-image:url('assets/foto04.jpg');transform:rotateY(120deg) translateZ(275px)"><span>Magia</span></div>
+<div class="ring-card" style="background-image:url('assets/foto05.jpg');transform:rotateY(160deg) translateZ(275px)"><span>Rosas</span></div>
+<div class="ring-card" style="background-image:url('assets/foto06.jpg');transform:rotateY(200deg) translateZ(275px)"><span>Fiesta</span></div>
+<div class="ring-card" style="background-image:url('assets/foto07.jpg');transform:rotateY(240deg) translateZ(275px)"><span>XV</span></div>
+<div class="ring-card" style="background-image:url('assets/foto08.jpg');transform:rotateY(280deg) translateZ(275px)"><span>Corona</span></div>
+<div class="ring-card" style="background-image:url('assets/foto09.jpg');transform:rotateY(320deg) translateZ(275px)"><span>Impacto</span></div>
+</div></div>
+</section>
+
+<section class="reveal">
+  <div class="panel"><h2>Programa</h2><div class="timeline">
+    <div class="row"><div class="time">6:00 PM</div><div>Misa de acción de gracias</div></div>
+    <div class="row"><div class="time">8:00 PM</div><div>Recepción y bienvenida</div></div>
+    <div class="row"><div class="time">8:30 PM</div><div>Vals y presentación</div></div>
+    <div class="row"><div class="time">9:00 PM</div><div>Cena y celebración</div></div>
+    <div class="row"><div class="time">11:00 PM</div><div>Pastel, brindis y sorpresas</div></div>
+  </div></div>
+</section>
+
+<section class="reveal">
+  <div class="panel" style="margin-bottom:18px"><h2>Dress code</h2><p class="copy"><strong>Formal glam</strong><br>Rosé, dorado, champagne, nude y detalles con brillo.</p><div class="palette"><span style="background:#fff8fc;animation-delay:0.0s"></span><span style="background:#ffc7df;animation-delay:0.2s"></span><span style="background:#e66fa8;animation-delay:0.4s"></span><span style="background:#e0b94c;animation-delay:0.6000000000000001s"></span><span style="background:#402337;animation-delay:0.8s"></span></div></div>
+  <div class="panel" style="margin-bottom:18px"><h2>Con cariño</h2><p class="copy">Acompáñame a celebrar esta etapa tan especial junto a mi familia y las personas que más quiero.</p></div>
+  <div class="panel"><h2>Mesa de regalos</h2><p class="copy">Si deseas tener un detalle conmigo, podrás ver aquí mi mesa de regalos o lluvia de sobres.</p><a class="btn" href="#" target="_blank">Ver detalles</a></div>
+</section>
+
+<section class="reveal"><div class="panel"><div class="count-lace"><div class="count-core"><div><h3>Faltan</h3><div class="nums"><span data-days>000</span> : <span data-hours>00</span> : <span data-minutes>00</span></div><small>Días · Horas · Minutos</small></div></div></div><p class="copy">para una noche mágica e inolvidable.</p></div></section>
+
+<section class="reveal"><div class="panel"><h2>RSVP</h2><p class="copy">Por favor confirma tu asistencia antes del <strong>30 de agosto de 2026</strong>.</p><input id="guestName" placeholder="Tu nombre"><textarea id="guestMsg" rows="4" placeholder="Mensaje opcional"></textarea><button class="btn fill wide" onclick="sendRSVP()">Confirmar por WhatsApp</button></div></section>
+
+<footer class="footer">Demo creada para <strong>Mi Invitación Digital</strong><br>WhatsApp 4772732496</footer>
+</main>
+
+<script>
+const observer = new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting) entry.target.classList.add('visible');});},{threshold:.14});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+let audioCtx,isPlaying=false,timer; const progression=[[261.63,329.63,392,523.25],[220,277.18,329.63,440],[196,246.94,311.13,392],[174.61,220,293.66,369.99]];
+function tone(freq,start,duration,gainVal,type='sine'){const osc=audioCtx.createOscillator();const gain=audioCtx.createGain();osc.type=type;osc.frequency.setValueAtTime(freq,start);gain.gain.setValueAtTime(0.0001,start);gain.gain.exponentialRampToValueAtTime(gainVal,start+.08);gain.gain.exponentialRampToValueAtTime(0.0001,start+duration);osc.connect(gain);gain.connect(audioCtx.destination);osc.start(start);osc.stop(start+duration+.05);}
+function playLoop(){if(!isPlaying) return; const now=audioCtx.currentTime; progression.forEach((chord,i)=>{const base=now+i*1.9; chord.forEach((f,idx)=>tone(f,base+idx*.1,1.6,idx===0?.042:.022,idx===0?'triangle':'sine')); tone(chord[0]/2,base,1.8,.018,'sine'); tone(chord[2]*2,base+.88,.5,.011,'triangle');}); timer=setTimeout(playLoop,7700);} 
+function toggleMusic(){const btn=document.querySelector('.music'); if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); if(audioCtx.state==='suspended') audioCtx.resume(); if(!isPlaying){isPlaying=true; btn.innerHTML='PAUSAR'; playLoop();} else {isPlaying=false; btn.innerHTML='DALE<br>PLAY'; clearTimeout(timer);}}
+function startCountdown(targetDate){const target=new Date(targetDate); function tick(){const diff=Math.max(target-new Date(),0); const d=Math.floor(diff/(1000*60*60*24)); const h=Math.floor((diff/(1000*60*60))%24); const m=Math.floor((diff/(1000*60))%60); document.querySelectorAll('[data-days]').forEach(el=>el.textContent=String(d).padStart(3,'0')); document.querySelectorAll('[data-hours]').forEach(el=>el.textContent=String(h).padStart(2,'0')); document.querySelectorAll('[data-minutes]').forEach(el=>el.textContent=String(m).padStart(2,'0'));} tick(); setInterval(tick,1000);} startCountdown(document.body.dataset.date||'2026-09-20T18:00:00');
+function sendRSVP(){const name=document.getElementById('guestName').value||'Invitado'; const message=document.getElementById('guestMsg').value||'Confirmo mi asistencia.'; const celebrada=document.body.dataset.name||'la quinceañera'; const text=encodeURIComponent(`Hola, soy ${name}. ${message} Confirmo asistencia a los XV años de ${celebrada}.`); window.open(`https://wa.me/524772732496?text=${text}`,'_blank');}
+const petalsWrap=document.getElementById('petals'); for(let i=0;i<20;i++){const p=document.createElement('span'); p.className='petal'; p.style.left=Math.random()*100+'%'; p.style.animationDuration=(11+Math.random()*10)+'s'; p.style.animationDelay=(Math.random()*9)+'s'; p.style.opacity=0.22+Math.random()*0.5; p.style.transform=`scale(${0.7+Math.random()*0.8})`; petalsWrap.appendChild(p);} 
+</script>
+
+</body></html>
