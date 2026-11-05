@@ -104,7 +104,7 @@ body{margin:0;background:var(--fuera,#d9d2c7);color:var(--texto);font-family:var
 /* Efectos */
 .efectos{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
 .efectos i{position:absolute;top:-30px;display:block;animation:caer linear infinite}
-.efectos.petalos i{width:12px;height:18px;border-radius:70% 40% 70% 40%;background:color-mix(in srgb,var(--acento) 70%,#fff);opacity:.7}
+.efectos.petalos i{width:12px;height:18px;border-radius:70% 40% 70% 40%;background:linear-gradient(135deg,#fff,color-mix(in srgb,var(--primario) 22%,#f6d5d5));opacity:.75;box-shadow:0 2px 4px rgba(0,0,0,.06)}
 .efectos.brillos i{width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 10px 3px color-mix(in srgb,var(--primario) 70%,#fff);opacity:.85}
 .efectos.confeti i{width:8px;height:14px;opacity:.85}
 
