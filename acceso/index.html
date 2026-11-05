@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tu acceso · Mi Invitación Digital</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100svh;font-family:Montserrat,Arial,sans-serif;background:linear-gradient(160deg,#fbf6eb,#f1e4cf);color:#2c2520;display:flex;align-items:center;justify-content:center;padding:24px}
+.c{width:100%;max-width:420px;background:#fff;border-radius:26px;padding:32px 24px;box-shadow:0 24px 60px rgba(60,40,10,.15);text-align:center}
+h1{font-family:'Great Vibes',cursive;font-weight:400;font-size:48px;color:#b08a45;margin:0 0 6px}
+p{font-size:15px;line-height:1.6;color:#6c625b;margin:8px 0}
+.dato{background:#fbf6eb;border:1px solid #ead9b8;border-radius:16px;padding:14px;margin:12px 0;text-align:left}
+.dato small{display:block;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#9a8566;font-weight:600}
+.dato b{display:block;font-size:18px;word-break:break-all;margin-top:4px;user-select:all}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border:0;border-radius:999px;background:#b08a45;color:#fff;font:700 15px Montserrat,Arial;text-decoration:none;margin-top:16px;cursor:pointer;touch-action:manipulation}
+.btn.sec{background:transparent;color:#b08a45;border:1.5px solid #b08a45;min-height:44px;font-size:13px}
+.giro{width:46px;height:46px;border-radius:50%;border:4px solid #ead9b8;border-top-color:#b08a45;margin:18px auto;animation:g 1s linear infinite}@keyframes g{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="c" id="c"><h1>¡Gracias!</h1><div class="giro"></div><p>Estamos preparando tu acceso…</p></div>
+<script src="../app/config.js?v=1"></script>
+<script>
+(function () {
+  const s = new URLSearchParams(location.search).get('s') || '';
+  const c = document.getElementById('c');
+  const esc = t => String(t || '').replace(/[&<>"']/g, x => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[x]));
+  const wa = 'https://wa.me/' + INV.KARINA + '?text=' + encodeURIComponent('Hola, ya pagué mi invitación y necesito mi acceso');
+  let intentos = 0;
+  async function revisar() {
+    intentos++;
+    try {
+      const r = await fetch(INV.FUNCION, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ accion: 'acceso', s }) });
+      const j = await r.json();
+      if (j.estado === 'listo') {
+        c.innerHTML = `<h1>¡Listo!</h1><p>Tu invitación <b>${esc(j.plan)}</b> ya está activa. Estos son tus datos para entrar (también te llegaron por WhatsApp):</p>
+          <div class="dato"><small>Usuario</small><b>${esc(j.usuario)}</b></div><div class="dato"><small>Contraseña</small><b>${esc(j.clave)}</b></div>
+          <p style="font-size:13px">Toma captura de pantalla para no perderlos.</p>
+          <button class="btn" id="entrar">Armar mi invitación ahora</button>`;
+        document.getElementById('entrar').onclick = () => { try { sessionStorage.setItem('inv_auto', JSON.stringify({ u: j.usuario, c: j.clave })); } catch (_) {} location.href = '../editor/'; };
+        return;
+      }
+      if (j.estado === 'entregado') {
+        c.innerHTML = `<h1>Ya tienes acceso</h1><p>Entra con tu correo <b>${esc(j.usuario)}</b> y la contraseña que te llegó por WhatsApp.</p><a class="btn" href="../editor/">Entrar al editor</a>`;
+        return;
+      }
+      if (!j.ok && j.error) throw new Error(j.error);
+    } catch (e) { if (!s) { c.innerHTML = '<h1>Ups</h1><p>Esta liga está incompleta. Entra al editor con los datos que te llegaron por WhatsApp.</p><a class="btn" href="../editor/">Ir al editor</a>'; return; } }
+    if (intentos < 45) return setTimeout(revisar, 4000);
+    c.innerHTML = `<h1>Casi listo</h1><p>Tu pago está en proceso. Si pagaste en OXXO, tu acceso llega por WhatsApp en cuanto se acredite (puede tardar unas horas).</p><p>Si pagaste con tarjeta y en 5 minutos no te llega, escríbenos.</p><a class="btn" href="${wa}">Escribir por WhatsApp</a><a class="btn sec" href="../editor/">Ya tengo mi contraseña</a>`;
+  }
+  revisar();
+})();
+</script>
+</body>
+</html>

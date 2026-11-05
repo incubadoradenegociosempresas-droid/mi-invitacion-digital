@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Invitación digital</title>
+<meta name="description" content="Estás invitado. Abre para ver todos los detalles y confirmar tu asistencia.">
+<meta property="og:title" content="Estás invitado ✨">
+<meta property="og:description" content="Abre tu invitación para ver los detalles y confirmar tu asistencia.">
+<meta name="theme-color" content="#1d1a17">
+<link rel="stylesheet" href="../app/invitacion.css?v=1">
+</head>
+<body>
+<div id="raiz"><div class="vacio" style="--suave:#777;--f-sans:Arial">Cargando invitación…</div></div>
+<script src="../app/config.js?v=1"></script>
+<script src="../app/render.js?v=1"></script>
+<script>
+(async function () {
+  const q = new URLSearchParams(location.search);
+  const raiz = document.getElementById('raiz');
+  if (q.get('previa') === '1') {
+    // Vista previa del editor: recibe los datos por postMessage
+    raiz.innerHTML = '';
+    let ultimo = null;
+    window.addEventListener('message', e => {
+      if (e.origin !== location.origin || !e.data || e.data.tipo !== 'inv-previa') return;
+      const y = window.scrollY; ultimo = e.data.inv;
+      InvRender.montar(raiz, ultimo, { previa: true, sinSobre: !e.data.conSobre });
+      window.scrollTo(0, e.data.arriba ? 0 : y);
+    });
+    parent.postMessage({ tipo: 'inv-previa-lista' }, location.origin);
+    return;
+  }
+  const slug = (q.get('e') || '').toLowerCase().trim();
+  const pase = (q.get('p') || '').toLowerCase().trim() || null;
+  if (!slug) { raiz.innerHTML = '<div class="vacio">Liga incompleta.</div>'; return; }
+  try {
+    const r = await fetch(INV.SUPABASE_URL + '/rest/v1/rpc/inv_publica', { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: INV.SUPABASE_KEY }, body: JSON.stringify({ p_slug: slug, p_pase: pase }) });
+    const inv = await r.json();
+    if (!inv || !inv.ok) { raiz.innerHTML = '<div class="vacio">Esta invitación todavía no está publicada o la liga cambió.<br>Pídele a quien te la mandó la liga nueva.</div>'; return; }
+    const d = inv.datos || {};
+    document.title = [d.titulo || InvRender.EVENTOS[inv.tipo_evento]?.titulo, d.anfitriones].filter(Boolean).join(' · ');
+    InvRender.montar(raiz, inv, { slug, pase });
+  } catch (e) {
+    raiz.innerHTML = '<div class="vacio">No pudimos cargar la invitación. Revisa tu conexión y vuelve a abrirla.</div>';
+  }
+})();
+</script>
+</body>
+</html>

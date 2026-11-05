@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Editor · Mi Invitación Digital</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#fbf6eb">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="editor.css?v=1">
+</head>
+<body>
+
+<!-- ACCESO -->
+<div id="v-login" class="login oculto">
+  <div class="caja">
+    <div class="logo">Mi Invitación Digital</div>
+    <p class="sub">Entra para armar tu invitación</p>
+    <form id="f-login">
+      <label>Correo</label><input type="email" name="correo" autocomplete="username" required inputmode="email">
+      <label>Contraseña</label><input type="password" name="clave" autocomplete="current-password" required>
+      <button class="btn" type="submit">Entrar</button>
+      <div class="msg" id="login-msg"></div>
+    </form>
+    <button class="liga" id="ver-recuperar">Olvidé mi contraseña</button>
+    <form id="f-recuperar" class="oculto">
+      <p class="sub">Escribe el correo y el WhatsApp con los que pagaste. Te damos una contraseña nueva.</p>
+      <label>Correo</label><input type="email" name="correo" required inputmode="email">
+      <label>WhatsApp (10 dígitos)</label><input name="telefono" required inputmode="tel" maxlength="16">
+      <button class="btn" type="submit">Cambiar contraseña</button>
+      <div class="msg" id="rec-msg"></div>
+    </form>
+    <p class="nota">¿Aún no tienes tu invitación? <a id="liga-comprar" target="_blank" rel="noopener">Pídela por WhatsApp</a></p>
+  </div>
+</div>
+
+<!-- EDITOR -->
+<div id="v-app" class="app oculto">
+  <header class="barra">
+    <div class="logo chico">Mi Invitación Digital</div>
+    <select id="sel-inv" class="oculto" aria-label="Elegir invitación"></select>
+    <span class="chip" id="chip-plan"></span>
+    <span class="estado" id="estado"></span>
+    <button class="liga" id="salir">Salir</button>
+  </header>
+  <div class="aviso-mejora oculto" id="aviso-mejora"></div>
+  <div class="cuerpo">
+    <main class="panel" id="panel">
+      <nav class="pestanas" id="pestanas">
+        <button data-p="editar" class="on">✏️ Editar</button>
+        <button data-p="previa" class="solo-movil">👁 Ver</button>
+        <button data-p="invitados">👥 Invitados</button>
+        <button data-p="paquete">⭐ Paquete</button>
+      </nav>
+      <section id="p-editar" class="pag on"></section>
+      <section id="p-invitados" class="pag"></section>
+      <section id="p-paquete" class="pag"></section>
+    </main>
+    <aside class="previa" id="previa">
+      <div class="marco"><iframe id="ifr" src="../i/?previa=1" title="Vista previa"></iframe></div>
+      <div class="previa-btns"><button class="btn sec chico" id="ver-sobre" hidden>Ver sobre animado</button></div>
+    </aside>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="../app/config.js?v=1"></script>
+<script src="../app/render.js?v=1"></script>
+<script src="editor.js?v=1"></script>
+</body>
+</html>
