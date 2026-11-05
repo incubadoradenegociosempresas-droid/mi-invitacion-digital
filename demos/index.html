@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paquetes y demos · Mi Invitación Digital</title>
+<meta name="description" content="Mira una invitación de ejemplo de cada paquete y elige la tuya.">
+<meta property="og:title" content="Invitaciones digitales: mira un ejemplo de cada paquete">
+<meta property="og:description" content="Básica $350 · Interactiva $990 · Premium $1,900 · Especial $3,000. Tú la armas desde tu celular.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Montserrat,Arial,sans-serif;color:#2c2520;background:linear-gradient(170deg,#fbf6eb,#f1e4cf);min-height:100svh;-webkit-tap-highlight-color:transparent}
+.w{max-width:520px;margin:0 auto;padding:28px 16px 60px}
+h1{font-family:'Great Vibes',cursive;font-weight:400;font-size:46px;color:#b08a45;text-align:center;margin:6px 0 4px}
+.sub{text-align:center;color:#6c625b;font-size:15px;line-height:1.55;margin:0 0 22px}
+.c{background:#fff;border-radius:24px;overflow:hidden;margin:16px 0;box-shadow:0 18px 40px rgba(60,40,10,.12);border:1.5px solid #ecdfc7}
+.c.top{border-color:#b08a45;box-shadow:0 0 0 3px #ead9b8,0 18px 40px rgba(60,40,10,.14)}
+.foto{height:170px;background:center/cover no-repeat;position:relative}
+.foto span{position:absolute;left:14px;bottom:12px;background:rgba(255,255,255,.92);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;letter-spacing:.5px}
+.foto b{position:absolute;right:14px;top:12px;background:#b08a45;color:#fff;border-radius:999px;padding:6px 12px;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+.in{padding:18px 18px 20px}
+.in h2{margin:0;font-size:20px;display:flex;justify-content:space-between;align-items:baseline}
+.in h2 em{font-style:normal;color:#b08a45;font-size:24px}
+.in p{margin:6px 0 0;color:#6c625b;font-size:13px}
+ul{margin:12px 0 0;padding-left:18px;color:#4f463f;font-size:14px;line-height:1.6}
+.bt{display:flex;gap:10px;margin-top:16px}
+.bt a{flex:1;display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;touch-action:manipulation}
+.ver{background:#b08a45;color:#fff}
+.quiero{border:1.5px solid #25a35a;color:#1d7a44}
+.nota{text-align:center;font-size:13px;color:#6c625b;line-height:1.6;margin-top:22px}
+</style>
+</head>
+<body>
+<div class="w">
+  <h1>Elige tu invitación</h1>
+  <p class="sub">Abre el ejemplo de cada paquete. Tú la armas desde tu celular en unos 15 minutos y puedes cambiarla cuando quieras hasta tu evento.</p>
+  <div id="lista"></div>
+  <p class="nota">¿Empiezas con uno y luego quieres más? Desde tu editor subes de paquete pagando solo la diferencia.<br>Pago con tarjeta u OXXO.</p>
+</div>
+<script src="../app/config.js?v=2"></script>
+<script>
+(function () {
+  const F = id => 'https://images.unsplash.com/photo-' + id + '?w=900&q=75&auto=format&fit=crop';
+  const P = [
+    { k: 'basica', demo: 'demo-basica', foto: F('1530103862676-de8c9debad1d'), ej: 'Ejemplo: cumpleaños', nota: 'Lo esencial, bonito y rápido.' },
+    { k: 'interactiva', demo: 'demo-interactiva', foto: F('1535254973040-607b474cb50d'), ej: 'Ejemplo: XV años', nota: 'La más pedida: sabes quién viene sin llamar a nadie.', top: true },
+    { k: 'premium', demo: 'demo-premium&p=familia4', foto: F('1583939003579-730e3918a45a'), ej: 'Ejemplo: boda (pase de la Familia Pérez)', nota: 'Para bodas y XV con muchos invitados.' },
+    { k: 'especial', demo: 'demo-especial', foto: F('1460978812857-470ed1c77af0'), ej: 'Ejemplo: boda con sobre animado', nota: 'La experiencia completa.' }
+  ];
+  document.getElementById('lista').innerHTML = P.map(x => {
+    const p = INV.PLANES[x.k];
+    const wa = 'https://wa.me/' + INV.KARINA + '?text=' + encodeURIComponent('Hola, quiero la invitación ' + p.nombre + ' de $' + p.precio.toLocaleString('es-MX'));
+    return `<div class="c ${x.top ? 'top' : ''}"><div class="foto" style="background-image:url('${x.foto}')"><span>${x.ej}</span>${x.top ? '<b>Más pedida</b>' : ''}</div>
+      <div class="in"><h2>${p.nombre} <em>$${p.precio.toLocaleString('es-MX')}</em></h2><p>${x.nota}</p>
+      <ul>${INV.INCLUYE[x.k].map(t => `<li>${t}</li>`).join('')}</ul>
+      <div class="bt"><a class="ver" href="../i/?e=${x.demo}" target="_blank" rel="noopener">👁 Ver ejemplo</a><a class="quiero" href="${wa}">La quiero</a></div></div></div>`;
+  }).join('');
+})();
+</script>
+</body>
+</html>
