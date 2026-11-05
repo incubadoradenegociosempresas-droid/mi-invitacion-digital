@@ -16,7 +16,8 @@ body{margin:0;background:var(--fuera,#d9d2c7);color:var(--texto);font-family:var
 /* Portada */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0!important;color:#fff;overflow:hidden}
 .hero .foto{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.06);animation:zoom 18s ease-in-out infinite alternate}
-.hero .velo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.05) 35%,rgba(0,0,0,.65) 100%)}
+.hero .velo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.05) 30%,rgba(0,0,0,.45) 62%,rgba(0,0,0,.72) 100%)}
+.hero:not(.sin-foto) .cont{text-shadow:0 2px 14px rgba(0,0,0,.35)}
 .hero.sin-foto{color:var(--texto);justify-content:center}
 .hero.sin-foto .velo{display:none}
 .hero .cont{position:relative;padding:40px 26px 70px}

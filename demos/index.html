@@ -46,13 +46,13 @@ ul{margin:12px 0 0;padding-left:18px;color:#4f463f;font-size:14px;line-height:1.
   const P = [
     { k: 'basica', demo: 'demo-basica', foto: F('1530103862676-de8c9debad1d'), ej: 'Ejemplo: cumpleaños', nota: 'Lo esencial, bonito y rápido.' },
     { k: 'interactiva', demo: 'demo-interactiva', foto: F('1535254973040-607b474cb50d'), ej: 'Ejemplo: XV años', nota: 'La más pedida: sabes quién viene sin llamar a nadie.', top: true },
-    { k: 'premium', demo: 'demo-premium&p=familia4', foto: F('1583939003579-730e3918a45a'), ej: 'Ejemplo: boda (pase de la Familia Pérez)', nota: 'Para bodas y XV con muchos invitados.' },
+    { k: 'premium', demo: 'demo-premium&p=familia4', pos: 'center 25%', foto: F('1583939003579-730e3918a45a'), ej: 'Ejemplo: boda (pase de la Familia Pérez)', nota: 'Para bodas y XV con muchos invitados.' },
     { k: 'especial', demo: 'demo-especial', foto: F('1460978812857-470ed1c77af0'), ej: 'Ejemplo: boda con sobre animado', nota: 'La experiencia completa.' }
   ];
   document.getElementById('lista').innerHTML = P.map(x => {
     const p = INV.PLANES[x.k];
     const wa = 'https://wa.me/' + INV.KARINA + '?text=' + encodeURIComponent('Hola, quiero la invitación ' + p.nombre + ' de $' + p.precio.toLocaleString('es-MX'));
-    return `<div class="c ${x.top ? 'top' : ''}"><div class="foto" style="background-image:url('${x.foto}')"><span>${x.ej}</span>${x.top ? '<b>Más pedida</b>' : ''}</div>
+    return `<div class="c ${x.top ? 'top' : ''}"><div class="foto" style="background-image:url('${x.foto}');background-position:${x.pos || 'center'}"><span>${x.ej}</span>${x.top ? '<b>Más pedida</b>' : ''}</div>
       <div class="in"><h2>${p.nombre} <em>$${p.precio.toLocaleString('es-MX')}</em></h2><p>${x.nota}</p>
       <ul>${INV.INCLUYE[x.k].map(t => `<li>${t}</li>`).join('')}</ul>
       <div class="bt"><a class="ver" href="../i/?e=${x.demo}" target="_blank" rel="noopener">👁 Ver ejemplo</a><a class="quiero" href="${wa}">La quiero</a></div></div></div>`;
